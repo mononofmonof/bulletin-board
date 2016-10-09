@@ -29,12 +29,12 @@ class MainSys:
 
 	def set_con(self, *con: str):
 		self._connection = pymysql.connect(
-								host=con[0],
-								user=con[1], 
-								password=con[2], 
-								db=con[3], 
-								charset=con[4]
-							)
+						host=con[0],
+						user=con[1], 
+						password=con[2], 
+						db=con[3], 
+						charset=con[4]
+					)
 
 		self._cursor = self._connection.cursor()
 
