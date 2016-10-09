@@ -8,7 +8,7 @@ print('Content-Type: text/html\n')
 print('<!doctype html>\n<body>')
 
 s = MainSys('name', 'mail', 'message')
-s.set_con('localhost', 'root', 'pass', 'keiziban2', 'utf8')
+s.set_con('localhost', 'root', 'mirohitogagominoyouda', 'keiziban2', 'utf8')
 
 def show():
 	cnt = 0
@@ -28,6 +28,7 @@ def show():
 				print(inwd, '</b></p>')
 
 			cnt += 1
+		cnt = 0
 		print('<hr>')
 
 
