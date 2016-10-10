@@ -2,13 +2,14 @@
 # -*- coding: utf-8 -*-
 import cgi, sys, io
 from system.main_sys import MainSys
+from system.main_sec import MainSec
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 print('Content-Type: text/html\n')
 print('<!doctype html>\n<body>')
 
 s = MainSys('name', 'mail', 'message')
-s.set_con('localhost', 'root', 'mirohitogagominoyouda', 'keiziban2', 'utf8')
+s.set_con('localhost', 'root', 'pass', 'keiziban2', 'utf8')
 
 def show():
 	cnt = 0
@@ -17,10 +18,11 @@ def show():
 			if cnt == 0:
 				print('<p><b>', inwd, '.')
 			elif cnt == 1:
-				print(inwd)
+				print(MainSec.esc_xss(inwd))
 			elif cnt == 3:
-				print('<p><b>Mail:', inwd, '</b></p>')
+				print('<p><b>Mail:', MainSec.esc_xss(inwd), '</b></p>')
 			elif cnt == 4:
+				inwd = MainSec.esc_xss(inwd)
 				if '\n' in inwd:
 					inwd = inwd.replace('\n', '<br>')
 				print('<p>', inwd, '</p>')
@@ -39,5 +41,4 @@ else:
 	show()
 
 s.close_db()
-
 print('</body>\n</html>')
