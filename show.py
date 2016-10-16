@@ -3,13 +3,14 @@
 import cgi, sys, io
 from system.main_sys import MainSys
 from system.main_sec import MainSec
+from system.control.con_admin import ConAdmin
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 print('Content-Type: text/html\n')
 print('<!doctype html>\n<body>')
 
 s = MainSys('name', 'mail', 'message')
-s.set_con('localhost', 'root', 'pass', 'keiziban2', 'utf8')
+s.set_con('localhost', 'root', 'mirohitogagominoyouda', 'keiziban2', 'utf8')
 
 def show():
 	cnt = 0
@@ -32,6 +33,10 @@ def show():
 			cnt += 1
 		cnt = 0
 		print('<hr>')
+
+def link_site(n):
+	if 'http://' in n:
+		return '<a href="{}">{}</a>'.format(n, n)
 
 
 if s.Name != '' and s.Mail != '' and s.Message != '':
