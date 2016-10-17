@@ -34,9 +34,20 @@ def show():
 		cnt = 0
 		print('<hr>')
 
-def link_site(n):
-	if 'http://' in n:
-		return '<a href="{}">{}</a>'.format(n, n)
+
+def link_site(n: str) -> str:
+	sub = ''
+	conn = list(n)
+	for i in range(len(conn)):
+		if conn[i] is '[':
+			sub = n[i+1:]
+			cnt=i+1
+		if conn[i] is ']':
+			sub = sub[:i-cnt]
+	if sub is '': 
+		return sub
+	else: 
+		return '<a href="{0}" about="_blank">{0}</a>'.format(sub)
 
 
 if s.Name != '' and s.Mail != '' and s.Message != '':
