@@ -24,6 +24,7 @@ def show():
 				print('<p><b>Mail:', MainSec.esc_xss(inwd), '</b></p>')
 			elif cnt == 4:
 				inwd = MainSec.esc_xss(inwd)
+				inwd = link_site(inwd)
 				if '\n' in inwd:
 					inwd = inwd.replace('\n', '<br>')
 				print('<p>', inwd, '</p>')
@@ -33,7 +34,6 @@ def show():
 			cnt += 1
 		cnt = 0
 		print('<hr>')
-
 
 def link_site(n: str) -> str:
 	sub = ''
@@ -45,9 +45,9 @@ def link_site(n: str) -> str:
 		if conn[i] is ']':
 			sub = sub[:i-cnt]
 	if sub is '': 
-		return sub
+		return n
 	else: 
-		return '<a href="{0}" about="_blank">{0}</a>'.format(sub)
+		return n.replace('[{}]'.format(sub), '<a href="{0}" target="_blank">{0}</a>'.format(sub))
 
 
 if s.Name != '' and s.Mail != '' and s.Message != '':
